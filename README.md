@@ -6,7 +6,7 @@
 #graduatoin
 
 
-
+### Account Managment 
 
 **POST** `/api/core/register/`
 
@@ -51,6 +51,13 @@
 
 ---
 
+**GET** `/admin/`
+
+**Description:**  
+This endpoint provides a custom admin panel for each user to manage their resources 
+
+---
+
 **POST** `/api/core/create-system/`
 
 **Request Body:**
@@ -69,8 +76,3 @@
 - **400 Bad Request**: Missing required fields.
 
 ---
-
-**GET** `/admin/`
-
-**Description:**  
-This endpoint provides a custom admin panel for each user to manage their resources 
