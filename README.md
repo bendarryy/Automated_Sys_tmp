@@ -156,7 +156,7 @@ PATCH api/restaurant/5/orders/6/
 
 **GET Order Details (To do the bills)**
 - Example 
-```
+```json
 GET /api/restaurant/5/orders/6/
 
     "id": 6,
