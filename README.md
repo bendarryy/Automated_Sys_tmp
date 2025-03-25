@@ -94,7 +94,7 @@ This endpoint provides a custom admin panel for each user to manage their resour
 
 
 
-### Ordring 
+### Ordering
 
 
 | Method      | Purpose                                                  | Endpoint                                                         |
