@@ -12,7 +12,8 @@ class MenuItem(BaseMultiTenantModel):
     category = models.CharField(max_length=50, choices=[  
         ("food", "Food"),  
         ("drink", "Drink"),  
-        ("dessert", "Dessert"),  
+        ("dessert", "Dessert"), 
+        ("soups", "Soups") 
     ],  null=True)  # Categorize items
     image = models.ImageField(upload_to="images/menu_images/", blank=True, null=True)  # Optional image
     created_at = models.DateTimeField(auto_now_add=True, null=True)  # Timestamp when added

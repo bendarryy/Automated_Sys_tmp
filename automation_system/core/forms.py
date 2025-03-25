@@ -5,6 +5,3 @@ class SystemForm(forms.ModelForm):
     class Meta:
         model = System
         fields = ["name", "category"]
-
-
-# hey

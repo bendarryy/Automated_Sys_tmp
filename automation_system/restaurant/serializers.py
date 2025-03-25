@@ -10,6 +10,7 @@ from .models import MenuItem
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
+    VALID_CATEGORIES = ['food' , 'soups' , 'drink', 'dessert']  # Define valid categories
     class Meta:
         model = MenuItem
         fields = [
@@ -34,8 +35,19 @@ class MenuItemSerializer(serializers.ModelSerializer):
 
         validated_data["system"] = system
         return super().create(validated_data)
+    def validate_price(self, value):
+        """
+        Check that the price is a positive value.
+        """
+        if value <= 0:
+            raise serializers.ValidationError("The price must be a positive number.")
+        return value
 
-
+    # def validate_category(self, value):
+    #     """Validate the category field."""
+    #     if value not in self.VALID_CATEGORIES:
+    #         raise serializers.ValidationError(f"Invalid category. Must be one of: {', '.join(self.VALID_CATEGORIES)}.")
+    #     return value
 
 
 
