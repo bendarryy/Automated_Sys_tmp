@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view , permission_classes
 from rest_framework.response import Response 
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .serializers import SystemSerializer , UserSerializer
-
+from .serializers import SystemSerializer , UserSerializer ,SystemListSerializer
+from rest_framework.generics import RetrieveAPIView , ListAPIView
 
 
 
@@ -45,6 +45,16 @@ def create_system(request):
         return Response({"message": "System created", "system_id": system.id}, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@permission_classes([IsAuthenticated])
+class SystemRetrieveView(ListAPIView):
+    queryset = System.objects.all()
+    serializer_class = SystemListSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        """Return only the systems owned by the authenticated user."""
+        return System.objects.filter(owner=self.request.user)
 
 
 # @csrf_exempt

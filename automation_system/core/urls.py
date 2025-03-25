@@ -9,4 +9,5 @@ urlpatterns = [
     path("login/", views.login_user, name="login"),  # Login endpoint
     path("logout/", views.logout_user, name="logout"),  # Logout endpoint
     path("create-system/", views.create_system, name="create_system"),  # System creation endpoint
+    path("systems/", views.SystemRetrieveView.as_view(), name="systems")
 ]
