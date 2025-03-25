@@ -85,6 +85,7 @@ This endpoint provides a custom admin panel for each user to manage their resour
 ## Menu Items
 
 - GET   ` /api/restaurant/{system_id}/menu-items/  `       → List all menu items
+	- ` /api/restaurant/{system_id}/menu-items/?category=food ` → filter menu based on (food or dirnk or soups or dessert)
 - POST    `/api/restaurant/{system_id}/menu-items/  `         → Create a new menu item
 - GET     ` /api/restaurant/{system_id}/menu-items/{id}/`     → Retrieve a specific item
 - PUT    ` /api/restaurant/{system_id}/menu-items/{id}/`     → Update an item
