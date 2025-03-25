@@ -5,19 +5,15 @@ from .views import *
 
 
 router = DefaultRouter()
+
+# Register existing MenuItem routes
 router.register(r'(?P<system_id>\d+)/menu-items', MenuItemViewSet, basename="menu-items")
 
+# Register new Order routes
+router.register(r"(?P<system_id>\d+)/orders", OrderViewSet, basename="order")
+router.register(r"(?P<system_id>\d+)/orders/(?P<order_id>\d+)/items", OrderItemViewSet, basename="order-item")
 
 urlpatterns = [
     path('', include(router.urls)),  
 ]
 
-# urlpatterns = [
-#     path('menu-items/', MenuItemViewSet.as_view({'get': 'list', 'post': 'create'}), name='menuitem-list'),
-#     path('menu-items/<int:pk>/', MenuItemViewSet.as_view({
-#         'get': 'retrieve',
-#         'put': 'update',
-#         'patch': 'partial_update',
-#         'delete': 'destroy'
-#     }), name='menuitem-detail'),
-# ]
