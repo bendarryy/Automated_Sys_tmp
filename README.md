@@ -94,5 +94,17 @@ This endpoint provides a custom admin panel for each user to manage their resour
 
 
 
+### Ordring 
 
+
+| Method      | Purpose                                                  | Endpoint                                                         |
+| ----------- | -------------------------------------------------------- | ---------------------------------------------------------------- |
+| `GET`       | List all orders                                          | `/api/restaurant/{system_id}/orders/`                            |
+| `POST`      | Create a new order.                                      | `/api/restaurant/{system_id}/orders/`                            |
+| `GET`       | Get a specific order.                                    | `/api/restaurant/{system_id}/orders/{order_id}/`                 |
+| `PUT`       | Update order (e.g. change status).                       | `/api/restaurant/{system_id}/orders/{order_id}/`                 |
+| `DELETE`    | Cancel or delete an order.                               | `/api/restaurant/{system_id}/orders/{order_id}/`                 |
+| `GET`       | List items in an order.                                  | `/api/restaurant/{system_id}/orders/{order_id}/items/`           |
+| `POST`      | Add a menu item to an order.                             | `/api/restaurant/{system_id}/orders/{order_id}/items/`           |
+| `DELETE`    | Remove a menu item from an order.                        | `/api/restaurant/{system_id}/orders/{order_id}/items/{item_id}
 

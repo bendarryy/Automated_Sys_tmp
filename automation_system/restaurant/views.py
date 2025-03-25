@@ -70,10 +70,10 @@ class OrderItemViewSet(viewsets.ModelViewSet):
         return OrderItem.objects.filter(
             order_id=order_id,
             menu_item__system_id=system_id
-        ).select_related('menu_item', 'order')
+        ).select_related('menu_item')
 
     def perform_create(self, serializer):
-        system_id = self.kwargs["system_id"]
+        system_id = int(self.kwargs["system_id"]) 
         user = self.request.user
 
         # Verify system and get order in one query
@@ -84,7 +84,9 @@ class OrderItemViewSet(viewsets.ModelViewSet):
             system_id=system_id
         )
         
+        # 2. Get menu_item with system prefetched
         menu_item = serializer.validated_data["menu_item"]
+        menu_item = MenuItem.objects.select_related('system').get(pk=menu_item.id)
         if menu_item.system_id != system_id:
             raise PermissionDenied("Menu item doesn't belong to this system")
 
@@ -94,7 +96,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         """Optimized bulk creation with system validation"""
-        system_id = self.kwargs["system_id"]
+        system_id = int(self.kwargs["system_id"]) 
         user = self.request.user
 
         # Verify system and get order in one query
@@ -110,7 +112,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(data=request.data, many=True)
             serializer.is_valid(raise_exception=True)
             
-            # Check all menu_items belong to system
+            # Check all menu_items belong to system 
             for item in serializer.validated_data:
                 if item['menu_item'].system_id != system_id:
                     raise PermissionDenied(

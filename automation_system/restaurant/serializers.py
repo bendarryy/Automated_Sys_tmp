@@ -46,12 +46,22 @@ class MenuItemSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    menu_item_name = serializers.ReadOnlyField(source="menu_item.name" )
+    menu_item_name = serializers.ReadOnlyField(source="menu_item.name")
+    menu_item = serializers.PrimaryKeyRelatedField(
+        queryset=MenuItem.objects.all()  # This ensures the menu_item exists
+    )
 
     class Meta:
         model = OrderItem
-        fields = [ "id" , "menu_item", "menu_item_name", "quantity" ]
-        read_only_fields  = ["id"]
+        fields = ["id", "menu_item", "menu_item_name", "quantity"]
+        read_only_fields = ["id", "menu_item_name"]
+
+    def validate(self, data):
+        """
+        Add any additional validation that requires access to multiple fields
+        """
+        # The system-specific validation will happen in the view
+        return data
 
 class OrderSerializer(serializers.ModelSerializer):
     order_items = OrderItemSerializer(many=True, read_only=True)
