@@ -19,7 +19,9 @@ class MenuItem(BaseMultiTenantModel):
     updated_at = models.DateTimeField(auto_now=True)  # Timestamp when modified
 
     def __str__(self):
-        return f"{self.name} - {self.price} {('✅' if self.is_available else '❌')}"
+        return self.name
+    # def __str__(self):
+    #     return f"{self.name} - {self.price} {('✅' if self.is_available else '❌')}"
 
 class Order(BaseMultiTenantModel):
     """Orders for restaurants and cafes"""
