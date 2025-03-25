@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)  # This hashes the password
         # Optionally, add to group logic can go here
         try:
-            group = Group.objects.get(name="normal")
+            group = Group.objects.get(name="Owner")
             user.groups.add(group)  # Add user to group
         except Group.DoesNotExist:
             raise serializers.ValidationError("Group does not exist.")

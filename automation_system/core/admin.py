@@ -30,10 +30,10 @@ class OrderAdmin(MultiTenantAdminMixin, admin.ModelAdmin):
 
 
 
-# @admin.register(System)
-# class SystemAdmin(MultiTenantAdminMixin, admin.ModelAdmin):
-#         list_display = ('name' , 'owner' , 'category' )
-#         search_fields = ('name',)  
+@admin.register(System)
+class SystemAdmin(MultiTenantAdminMixin, admin.ModelAdmin):
+        list_display = ('name' , 'owner' , 'category' )
+        search_fields = ('name',)  
 
 
 

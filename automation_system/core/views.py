@@ -34,7 +34,7 @@ from .serializers import SystemSerializer , UserSerializer
 #     return JsonResponse({"error": "POST request required"}, status=400)
 
 
-
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_system(request):
