@@ -19,19 +19,6 @@ from rest_framework.generics import RetrieveAPIView , ListAPIView
 
 
 
-# @csrf_exempt
-# @login_required
-# @api_view(['POST'])
-# def create_system(request):
-#     if request.method == "POST":
-#         data = json.loads(request.body)
-#         system_name = data.get("name")
-#         category = data.get("category")
-        
-#         system = System.objects.create(name=system_name, category=category, owner=request.user)
-#         return JsonResponse({"message": "System created", "system_id": system.id})
-
-#     return JsonResponse({"error": "POST request required"}, status=400)
 
 
 @csrf_exempt
