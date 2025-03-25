@@ -76,3 +76,17 @@ This endpoint provides a custom admin panel for each user to manage their resour
 - **400 Bad Request**: Missing required fields.
 
 ---
+
+## Menu Items
+
+GET   ` /api/restaurant/{system_id}/menu-items/  `       → List all menu items
+POST    `/api/restaurant/{system_id}/menu-items/  `         → Create a new menu item
+GET     ` /api/restaurant/{system_id}/menu-items/{id}/`     → Retrieve a specific item
+PUT    ` /api/restaurant/{system_id}/menu-items/{id}/`     → Update an item
+PATCH  ` /api/restaurant/{system_id}/menu-items/{id}/`     → Partially update an item
+DELETE  ` /api/restaurant/{system_id}/menu-items/{id}/`     → Delete an item
+
+
+
+
+
