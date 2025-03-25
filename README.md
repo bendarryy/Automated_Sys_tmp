@@ -77,6 +77,11 @@ This endpoint provides a custom admin panel for each user to manage their resour
 
 ---
 
+## System 
+ 
+- GET  ` /api/core/systems`   → List all systems
+
+
 ## Menu Items
 
 - GET   ` /api/restaurant/{system_id}/menu-items/  `       → List all menu items
