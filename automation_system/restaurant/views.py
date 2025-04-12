@@ -125,7 +125,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return super().create(request, *args, **kwargs)
-    
+    #add kitchen order By Ali
 class KitchenOrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
