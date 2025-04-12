@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import MenuItem
 from .serializers import MenuItemSerializer , OrderSerializer , OrderItemSerializer
 from rest_framework.exceptions import PermissionDenied ,MethodNotAllowed
-
+from rest_framework import permissions
 
 class MenuItemViewSet(viewsets.ModelViewSet):
     serializer_class = MenuItemSerializer
@@ -126,5 +126,21 @@ class OrderItemViewSet(viewsets.ModelViewSet):
         
         return super().create(request, *args, **kwargs)
     
-    
-    
+class KitchenOrderViewSet(viewsets.ModelViewSet):
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Order.objects.filter(status__in=['pending', 'preparing']).order_by('created_at')
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        new_status = request.data.get('status')
+
+        if new_status not in ['preparing', 'ready']:
+            return Response({"error": "Invalid status for kitchen."}, status=status.HTTP_400_BAD_REQUEST)
+
+        instance.status = new_status
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
