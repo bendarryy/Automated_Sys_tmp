@@ -17,3 +17,15 @@ urlpatterns = [
     path('', include(router.urls)),  
 ]
 
+# Api endpoint for kichen by ali
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import KitchenOrderViewSet
+
+router = DefaultRouter()
+router.register(r'kitchen-orders', KitchenOrderViewSet, basename='kitchen-orders')
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
+
