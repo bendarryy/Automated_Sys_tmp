@@ -11,5 +11,5 @@ router.register(r"(?P<system_id>\d+)/orders", OrderViewSet, basename="order")
 router.register(r"(?P<system_id>\d+)/orders/(?P<order_id>\d+)/items", OrderItemViewSet, basename="order-item")
 router.register(r'kitchen/orders', KitchenOrderViewSet, basename='kitchen-orders')
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
